@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 module.exports = (env) => {
   const mode = env.mode === 'production' ? 'production' : 'development'
@@ -24,13 +25,23 @@ module.exports = (env) => {
         filename: 'css/[name].[contenthash:8].css',
         chunkFilename: 'css/[name].[contenthash:8].css',
       }),
-    ],
+      isDev && new ReactRefreshWebpackPlugin(),
+    ].filter(Boolean),
     module: {
       rules: [
         {
           test: /\.(js|ts)x?$/,
           exclude: /node_modules/,
-          use: ['babel-loader'],
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                plugins: [
+                  isDev && require.resolve('react-refresh/babel'),
+                ].filter(Boolean),
+              },
+            },
+          ],
         },
         {
           test: /\.(sc|sa|c)ss$/,
@@ -54,6 +65,9 @@ module.exports = (env) => {
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.jsx', '.js'],
+      preferAbsolute: true,
+      modules: ['./src', 'node_modules'],
+      mainFiles: ['index'],
     },
     devServer: isDev
       ? {
