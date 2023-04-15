@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
     "target": "ESNext",
-    "module": "umd",
+    "module": "ESNext",
     "lib": ["ESNext", "dom"],
-    "jsx": "react",
+    "jsx": "react-jsx",
     "noEmit": true,
     "sourceMap": true,
     "strict": true,
@@ -11,7 +12,8 @@
     "strictNullChecks": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "isolatedModules": true
   },
   "include": ["src"]
 }

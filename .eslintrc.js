@@ -21,15 +21,13 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   rules: {
-    'no-unused-vars': 'off',
+    'react/display-name': 'off',
+    'import/no-unresolved': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     '@typescript-eslint/no-var-requires': 'off',
     'react/prop-types': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    indent: ['error', 2],
-    '@typescript-eslint/indent': ['error', 2],
-    'max-len': ['error', { code: 120 }],
   },
 }

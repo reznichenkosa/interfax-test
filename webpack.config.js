@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 module.exports = (env) => {
   const mode = env.mode === 'production' ? 'production' : 'development'
@@ -11,22 +12,39 @@ module.exports = (env) => {
     entry: path.resolve(__dirname, 'src'),
     output: {
       path: path.resolve(__dirname, './dist'),
-      filename: 'bundle.js',
+      filename: '[name].[contenthash].js',
+      clean: true,
+      publicPath: '/',
     },
+    devtool: isDev ? 'inline-source-map' : undefined,
     plugins: [
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'public', 'index.html'),
       }),
-    ],
+      new MiniCssExtractPlugin({
+        filename: 'css/[name].[contenthash:8].css',
+        chunkFilename: 'css/[name].[contenthash:8].css',
+      }),
+      isDev && new ReactRefreshWebpackPlugin(),
+    ].filter(Boolean),
     module: {
       rules: [
         {
           test: /\.(js|ts)x?$/,
           exclude: /node_modules/,
-          use: ['babel-loader'],
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                plugins: [
+                  isDev && require.resolve('react-refresh/babel'),
+                ].filter(Boolean),
+              },
+            },
+          ],
         },
         {
-          test: /\.css$/i,
+          test: /\.(sc|sa|c)ss$/,
           use: [
             isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
             {
@@ -47,15 +65,20 @@ module.exports = (env) => {
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.jsx', '.js'],
+      preferAbsolute: true,
+      modules: ['./src', 'node_modules'],
+      mainFiles: ['index'],
     },
-    devServer: {
-      port: 3000,
-      open: true,
-      historyApiFallback: true,
-      hot: true,
-      static: {
-        directory: path.resolve(__dirname, './dist'),
-      },
-    },
+    devServer: isDev
+      ? {
+          port: 3000,
+          open: true,
+          historyApiFallback: true,
+          hot: true,
+          static: {
+            directory: path.resolve(__dirname, './dist'),
+          },
+        }
+      : undefined,
   }
 }
