@@ -40,8 +40,8 @@ export interface Tree {
 export interface Verification {
   verified: boolean
   reason: string
-  signature: any
-  payload: any
+  signature: string
+  payload: string
 }
 
 export interface Author2 {

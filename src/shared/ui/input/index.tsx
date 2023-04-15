@@ -1,10 +1,9 @@
 import { DetailedHTMLProps, FC, InputHTMLAttributes } from 'react'
 
-interface InputProps
-  extends Omit<
-    DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
-    'styles'
-  > {}
+type InputProps = Omit<
+  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
+  'styles'
+>
 
 export const Input: FC<InputProps> = ({ type = 'text', ...otherProps }) => {
   return (

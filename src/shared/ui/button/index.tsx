@@ -5,14 +5,10 @@ import {
   PropsWithChildren,
 } from 'react'
 
-interface ButtonProps
-  extends Omit<
-    DetailedHTMLProps<
-      ButtonHTMLAttributes<HTMLButtonElement>,
-      HTMLButtonElement
-    >,
-    'styles'
-  > {}
+type ButtonProps = Omit<
+  DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
+  'styles'
+>
 
 export const Button: FC<PropsWithChildren<ButtonProps>> = ({
   children,
