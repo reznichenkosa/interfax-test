@@ -1,3 +1,3 @@
-export { CommitCard, CommitList, ProjectList, ProjectCard } from './ui'
+export { CommitItem, CommitList, ProjectList, ProjectCard } from './ui'
 export { useUserRepositories, useRepositoryCommits } from './model'
-export { type Project } from './model'
+export { type Project, type Commit } from './model'

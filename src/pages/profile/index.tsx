@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 
 import { ProjectList, useUserRepositories } from 'entities/repository'
 import { UserCard, useUserProfile } from 'entities/user'
+import { BackHistoryButton } from 'features/back-history-button'
 
 const Profile = () => {
   const { login } = useParams() as { login: string }
@@ -13,14 +14,17 @@ const Profile = () => {
     return <div className="text-center">Loading...</div>
   }
 
-  if (!userData) {
-    return <div className="text-center">User not found!</div>
-  }
-
   return (
-    <div className="grid grid-cols-[400px_1fr] gap-4">
-      <UserCard user={userData} />
-      <ProjectList projects={repositoriesData || []} />
+    <div className="flex flex-col gap-4">
+      <BackHistoryButton />
+      {userData ? (
+        <div className="grid grid-cols-[400px_1fr] gap-4">
+          <UserCard user={userData} />
+          <ProjectList projects={repositoriesData || []} />
+        </div>
+      ) : (
+        <div className="text-center">User not found!</div>
+      )}
     </div>
   )
 }

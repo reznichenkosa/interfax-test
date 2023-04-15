@@ -3,7 +3,7 @@ import { getUserInfoByLogin } from '../services/get-user-info-by-login'
 
 export const useUserProfile = (login: string) => {
   const { data, error, isLoading } = useQuery(
-    'userProfile',
+    `userProfile${login}`,
     async () => await getUserInfoByLogin(login),
     { retry: false }
   )

@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from 'shared/ui/button'
 import { Input } from 'shared/ui/input'
@@ -11,18 +11,18 @@ export const SearchUserByLogin = () => {
     setSearchQuery(e.target.value)
   }
 
-  const handleSearchClick = () => {
+  const handleSearchFormSubmit = (e: FormEvent<HTMLFormElement>) => {
     navigate(`/${searchQuery}`)
   }
 
   return (
-    <div className="flex gap-2">
+    <form onSubmit={handleSearchFormSubmit} className="flex gap-2">
       <Input
         value={searchQuery}
         onChange={handleSearchQueryChange}
         placeholder="Enter GitHub account..."
       />
-      <Button onClick={handleSearchClick}>Search</Button>
-    </div>
+      <Button type="submit">Search</Button>
+    </form>
   )
 }

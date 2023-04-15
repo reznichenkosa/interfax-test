@@ -1,4 +1,4 @@
-import { SearchUserByLogin } from 'features/search-user-by-login/ui'
+import { SearchUserByLogin } from 'features/search-user-by-login'
 
 const Home = () => {
   return (

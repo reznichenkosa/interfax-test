@@ -1,4 +1,5 @@
-import { useRepositoryCommits } from 'entities/repository'
+import { CommitList, useRepositoryCommits } from 'entities/repository'
+import { BackHistoryButton } from 'features/back-history-button'
 import { useParams } from 'react-router-dom'
 
 const RepositoryCommits = () => {
@@ -19,6 +20,11 @@ const RepositoryCommits = () => {
     return <div className="text-center">Commits not found!</div>
   }
 
-  return <div>RepositoryCommits</div>
+  return (
+    <div className="flex flex-col gap-4">
+      <BackHistoryButton />
+      <CommitList commits={commitsData} />
+    </div>
+  )
 }
 export default RepositoryCommits

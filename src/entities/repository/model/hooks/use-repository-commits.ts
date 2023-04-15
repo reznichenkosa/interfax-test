@@ -3,7 +3,7 @@ import { getRepositoryCommitsByName } from '../services/get-repository-commits-b
 
 export const useRepositoryCommits = (login: string, repository: string) => {
   const { data, error, isLoading } = useQuery(
-    'userRepositoryCommits',
+    `userRepositoryCommits${login}${repository}`,
     async () => await getRepositoryCommitsByName(login, repository),
     { retry: false }
   )
