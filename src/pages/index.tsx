@@ -3,18 +3,16 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 const HomePage = lazy(() => import('./home'))
 const ProfilePage = lazy(() => import('./profile'))
-const RepositoriesPage = lazy(() => import('./repositories'))
-const RepositoriesDetailsPage = lazy(() => import('./repositories-details'))
+const RepositoryCommitsPage = lazy(() => import('./repository-commits'))
 
 export const Routing = () => {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/profile/repositories" element={<RepositoriesPage />} />
+      <Route path="/:login" element={<ProfilePage />} />
       <Route
-        path="/profile/repositories/:id"
-        element={<RepositoriesDetailsPage />}
+        path="/:login/:repository/commits"
+        element={<RepositoryCommitsPage />}
       />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
