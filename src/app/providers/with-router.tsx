@@ -7,7 +7,7 @@ export const withRouter = (component: () => React.ReactNode) => () =>
     <BrowserRouter>
       <Suspense
         fallback={
-          <div className="h-full flex justify-center items-center">
+          <div className="flex-grow flex justify-center items-center">
             <Loader />
           </div>
         }

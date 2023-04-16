@@ -14,14 +14,14 @@ const Profile = () => {
 
   if (isLoading || isRepositoriesLoading) {
     return (
-      <div className="h-full flex justify-center items-center">
+      <div className="flex-grow flex justify-center items-center">
         <Loader />
       </div>
     )
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 flex-grow">
       <BackHistoryButton />
       {userData ? (
         <div className="grid grid-cols-[400px_1fr] gap-4">

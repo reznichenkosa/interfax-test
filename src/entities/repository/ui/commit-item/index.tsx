@@ -9,8 +9,8 @@ interface CommitItemProps {
 
 export const CommitItem: FC<CommitItemProps> = ({ commit }) => {
   return (
-    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-      <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex gap-2 items-center">
+    <tr className="bg-white border-b">
+      <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap flex gap-2 items-center">
         <Avatar
           size="small"
           src={commit.author?.avatar_url}

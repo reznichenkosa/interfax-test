@@ -1,8 +1,3 @@
 export const getFormattedDate = (date: Date) => {
-  return date.toLocaleDateString('en-EN', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
+  return date.toISOString().split('T')[0]
 }

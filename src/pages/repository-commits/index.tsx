@@ -15,7 +15,7 @@ const RepositoryCommits = () => {
 
   if (isLoading) {
     return (
-      <div className="h-full flex justify-center items-center">
+      <div className="flex-grow flex justify-center items-center">
         <Loader />
       </div>
     )
@@ -26,7 +26,7 @@ const RepositoryCommits = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-grow flex-col gap-4">
       <BackHistoryButton />
       <CommitList commits={commitsData} />
     </div>

@@ -2,7 +2,7 @@ import { SearchUserByLogin } from 'features/search-user-by-login'
 
 const Home = () => {
   return (
-    <div className="flex justify-center items-center h-full">
+    <div className="flex flex-grow items-center justify-center">
       <SearchUserByLogin />
     </div>
   )

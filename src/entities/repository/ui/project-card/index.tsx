@@ -15,7 +15,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
       >
         {project.name}
       </Link>
-      <div className="text-gray-600 text-sm">{project.description}</div>
+      <div className="text-gray-600 text-sm flex-1">{project.description}</div>
       <div className="flex justify-between items-center">
         <span>{project.language}</span>
         <span className="flex gap-1">
