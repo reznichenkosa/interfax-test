@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { ProjectList, useUserRepositories } from 'entities/repository'
 import { UserCard, useUserProfile } from 'entities/user'
 import { BackHistoryButton } from 'features/back-history-button'
+import { Loader } from 'shared/ui/loader'
 
 const Profile = () => {
   const { login } = useParams() as { login: string }
@@ -11,7 +12,11 @@ const Profile = () => {
     useUserRepositories(login)
 
   if (isLoading || isRepositoriesLoading) {
-    return <div className="text-center">Loading...</div>
+    return (
+      <div className="h-full flex justify-center items-center">
+        <Loader />
+      </div>
+    )
   }
 
   return (
