@@ -1,6 +1,7 @@
 import { CommitList, useRepositoryCommits } from 'entities/repository'
 import { BackHistoryButton } from 'features/back-history-button'
 import { useParams } from 'react-router-dom'
+import { Loader } from 'shared/ui/loader'
 
 const RepositoryCommits = () => {
   const { login, repository } = useParams() as {
@@ -11,9 +12,13 @@ const RepositoryCommits = () => {
     login,
     repository
   )
-  console.log(commitsData)
+
   if (isLoading) {
-    return <div className="text-center">Loading...</div>
+    return (
+      <div className="h-full flex justify-center items-center">
+        <Loader />
+      </div>
+    )
   }
 
   if (!commitsData) {
