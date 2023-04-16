@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from 'shared/ui/button'
 import { Input } from 'shared/ui/input'
@@ -11,8 +11,9 @@ export const SearchUserByLogin = () => {
     setSearchQuery(e.target.value)
   }
 
-  const handleSearchFormSubmit = () => {
-    navigate(`/${searchQuery}`)
+  const handleSearchFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    navigate(`${searchQuery}`)
   }
 
   return (

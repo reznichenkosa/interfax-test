@@ -7,6 +7,7 @@ import { Loader } from 'shared/ui/loader'
 
 const Profile = () => {
   const { login } = useParams() as { login: string }
+
   const { data: userData, isLoading } = useUserProfile(login)
   const { data: repositoriesData, isLoading: isRepositoriesLoading } =
     useUserRepositories(login)
